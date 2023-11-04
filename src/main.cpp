@@ -1,7 +1,7 @@
 #include "main.h"
 
 void setup() {
-
+  pinMode(3,3);
 }
 
 void loop() {
