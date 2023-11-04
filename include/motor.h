@@ -66,12 +66,12 @@ public:
 
     void init();
     
-    void stop();
-    void forward();
-    void turnLeft();
-    void turnRight();
+    void stop() const;
+    void forward() const;
+    void turnLeft() const;
+    void turnRight() const;
 
-    void setState(unsigned char state);
+    void setState(unsigned char state) const;
 };
 
 #endif

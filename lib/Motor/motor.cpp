@@ -55,34 +55,30 @@ void Motor::init() {
     pinMode(RIGHT_SPEED_PIN, OUTPUT);
 }
 
-void Motor::stop() {
+void Motor::stop() const {
     setState(STATE[STATE_STOP]);
 }
 
-void Motor::forward() {
+void Motor::forward() const {
     setState(STATE[STATE_FWD]);
 }
 
-void Motor::turnLeft() {
+void Motor::turnLeft() const {
     setState(STATE[STATE_LEFT]);
 }
 
-void Motor::turnRight() {
+void Motor::turnRight() const {
     setState(STATE[STATE_RIGHT]);
 }
 
-void Motor::setState(unsigned char state) {
+void Motor::setState(unsigned char state) const {
     unsigned char divider = state & (0b00000011);
     if(divider == 0) divider = 1;
 
     if(!(state & (1 << 2)))
-        rightSpeed /= divider;
+        analogWrite(RIGHT_SPEED_PIN, rightSpeed / divider);
     if(!(state & (1 << 3))) 
-        leftSpeed /= divider;
-    
-
-    analogWrite(RIGHT_SPEED_PIN, rightSpeed);
-    analogWrite(LEFT_SPEED_PIN, leftSpeed);
+        analogWrite(LEFT_SPEED_PIN, leftSpeed / divider);
 
     digitalWrite(RIGHT_MOTOR_FWD_PIN, (bool) (state & (1 << 4)));
     digitalWrite(RIGHT_MOTOR_BWD_PIN, (bool) (state & (1 << 5)));
