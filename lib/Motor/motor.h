@@ -34,9 +34,9 @@
  *  Bit 6:      Left Motor Backward State
  *  Bit 5:      Right Motor Backward State
  *  Bit 4:      Right Motor Forward State
- *  Bit 3:      Left Motor DisableDivider State     // 0 means LeftSpeed = LeftSpeed. 1 means LeftSpeed = LeftSpeed / Divider
- *  Bit 2:      Right Motor DisableDivider State
- *  Bit 1,0:    2-bit speed divider value           // 00 and 01 means Divider = 1, 10 means Divider = 2, 11 means Divider = 3
+ *  Bit 3:      Left Motor Divider Enable State
+ *  Bit 2:      Right Motor Divider Enable State
+ *  Bit 1,0:    Motor Speed Divider Value
  */
 #define STATE_STOP  0
 #define STATE_FWD   1
@@ -44,10 +44,10 @@
 #define STATE_RIGHT 3
 
 const unsigned char STATE[] = {
-    0b00000001,       // stop
-    0b10010001,       // forward
-    0b10010110,       // turn left
-    0b10011010        // turn right
+    0b00000000,       // stop
+    0b10010000,       // forward
+    0b00010000,       // turn left
+    0b10000000        // turn right
 };
 
 class Motor {
