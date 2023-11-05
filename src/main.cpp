@@ -1,6 +1,6 @@
 #include "main.h"
 
-Motor motor(SPEED_MAX / 3);
+Motor motor(SPEED_MAX / 2);
 
 void setup() {
     motor.init();
@@ -8,9 +8,9 @@ void setup() {
 
 void loop() {
     motor.forward();
-    delay(1000);
+    delay(3000);
     motor.turnLeft();
-    delay(1000);
+    delay(3000);
     motor.turnRight();
-    delay(1000);
+    delay(3000);
 }
