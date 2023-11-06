@@ -50,8 +50,6 @@ RemoteControl<Devices>::RemoteControl() {
 
 template<class Devices>
 RemoteControl<Devices>::RemoteControl(Devices* p_devices) : p_devices(p_devices), ssid(SSID), password(PASSWORD), server(PORT_HTTP) {
-    Serial.begin(115200);
-
     /* Set static IP */
     local_IP.fromString(STATIC_IP);
     gateway.fromString(GATEWAY);

@@ -9,7 +9,7 @@
 #define IN3 25
 #define IN4 33
 
-#define ENA 2
+#define ENA 15
 #define ENB 4
 
 
