@@ -1,6 +1,6 @@
 #include "RemoteMotorControl.h"
 
-RemoteMotorControl::RemoteMotorControl(Motor* p_motor, uint8_t signalLed) {
+RemoteMotorControl::RemoteMotorControl(Motor* p_motor, uint8_t signalLed) : RemoteControl(p_motor) {
     this->signalLed = signalLed;
     this->p_motor = p_motor;
 }
@@ -31,33 +31,38 @@ void RemoteMotorControl::setHandler() {
 }
 
 void RemoteMotorControl::handleOnConnectRequest() {
-    static uint32_t previousMillisOnConnectRequest;
-    static bool ledState = false;
+    Serial.println("Receive request: On Connect");
+    bool ledstate = false;
 
-    int interval = 50;
-    uint32_t currentMillis = millis();
-
-    uint8_t numberOfSignal = 3;
-    while (numberOfSignal--) {
-        if (currentMillis - previousMillisOnConnectRequest > interval) {
-            ledState = !ledState;
-            digitalWrite(signalLed, ledState);
-        }
+    int numberOfBlink = 3;
+    while(numberOfBlink--) {
+        digitalWrite(signalLed, HIGH);
+        delay(50);
+        digitalWrite(signalLed, LOW);
+        delay(50);
     }
 }
 
 void RemoteMotorControl::handleForwardRequest() {
+    Serial.println("Receive request: Forward");
+
     this->p_motor->forward();
 }
 
 void RemoteMotorControl::handleTurnLeftRequest() {
+    Serial.println("Receive request: Turn Left");
+
     this->p_motor->turnLeft();
 }
 
 void RemoteMotorControl::handleTurnRightRequest() {
+    Serial.println("Receive request: Turn Right");
+
     this->p_motor->turnRight();
 }
 
 void RemoteMotorControl::handleStopRequest() {
+    Serial.println("Receive request: Stop");
+
     this->p_motor->stop();
 }

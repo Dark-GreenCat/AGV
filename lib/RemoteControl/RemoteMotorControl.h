@@ -9,7 +9,7 @@
 #define TURN_RIGHT_REQ  "/motor/turnright"
 #define STOP_REQ        "/motor/stop"
 
-class RemoteMotorControl : protected RemoteControl<Motor> {
+class RemoteMotorControl : public RemoteControl<Motor> {
 private:
     uint8_t signalLed;
     Motor* p_motor;
