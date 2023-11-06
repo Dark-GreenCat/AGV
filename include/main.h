@@ -3,5 +3,6 @@
 
 #include <Arduino.h>
 #include "motor.h"
+#include "RemoteMotorControl.h"
 
 #endif
