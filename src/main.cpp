@@ -1,25 +1,16 @@
 #include "main.h"
 
 Motor motor(SPEED_MAX / 2);
-RemoteMotorControl remoteMotorControl(&motor);
-
-void handleOn() {
-    for(int i = 3; i > 0; i--) {
-        digitalWrite(LED_BUILTIN, 1);
-        delay(50);
-        digitalWrite(LED_BUILTIN, 0);
-        delay(50);
-    }
-}
 
 void setup() {
-    Serial.begin(115200);
-    pinMode(LED_BUILTIN, OUTPUT);
-    remoteMotorControl.init();
-
-    remoteMotorControl.begin();
+    motor.init();
 }
 
 void loop() {
-    remoteMotorControl.handleClient();
+    motor.forward();
+    delay(3000);
+    motor.turnLeft();
+    delay(3000);
+    motor.turnRight();
+    delay(3000);
 }
